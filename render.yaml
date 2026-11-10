@@ -1,0 +1,14 @@
+# Render "Blueprint": lets Render set up the website from this file.
+# Render dashboard -> New -> Blueprint -> pick this repository -> Apply.
+services:
+  - type: web
+    name: polytsia
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true            # every push to GitHub redeploys the site
+    envVars:
+      - key: DEMO_MODE          # set to "false" once real reviews/contacts are in place
+        value: "true"
+      - key: SITE_URL           # your domain, e.g. https://polytsia.com.ua (optional)
+        sync: false
